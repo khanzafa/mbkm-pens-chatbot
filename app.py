@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import dotenv
 from langchain.prompts import (
@@ -10,6 +11,12 @@ from langchain.schema.runnable import RunnablePassthrough
 
 # Load environment variables
 dotenv.load_dotenv()
+
+# And the root-level secrets are also accessible as environment variables:
+st.write(
+    "Has environment variables been set:",
+    os.environ["GOOGLE_API_KEY"] == st.secrets["GOOGLE_API_KEY"],
+)
 
 # Define the path for the Chroma data
 CHROMA_PATH = "chroma_data/"
